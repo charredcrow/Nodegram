@@ -1,0 +1,66 @@
+.workspace-import-export-buttons {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+  align-items: center;
+}
+
+.workspace-io-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 31px;
+  backdrop-filter: blur(10px);
+}
+
+.workspace-io-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: var(--color-border-primary);
+}
+
+.workspace-io-button:active {
+  transform: scale(0.98);
+}
+
+.workspace-io-button svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.workspace-io-button span {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .workspace-import-export-buttons {
+    top: 6px;
+    right: 6px;
+    gap: 6px;
+  }
+
+  .workspace-io-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    height: 28px;
+  }
+
+  .workspace-io-button span {
+    display: none;
+  }
+
+  .workspace-io-button svg {
+    font-size: 18px;
+  }
+}
+

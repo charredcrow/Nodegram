@@ -16,6 +16,8 @@ import { useNotification } from '../../../app/providers/NotificationProvider';
 import { useWorkspaceStore } from '../../../shared/store';
 import { useWorkspaceManagement } from '../../../features/workspace-management';
 import { useNodeManagement } from '../../../features/node-management';
+import { useWorkspaceImportExport } from '../../../features/workspace-import-export';
+import { FiDownload, FiUpload } from 'react-icons/fi';
 import {
   typeNodeName,
   typeColors,
@@ -27,6 +29,7 @@ import {
 import type { Node, Link, CalendarItem } from '../../../shared/store/types';
 
 import './WorkspaceTransition.css';
+import './WorkspaceIOButtons.css';
 
 const DRAFT_KEY_PREFIX = '_ng_draft_';
 
@@ -104,6 +107,8 @@ export const WorkspacePage = () => {
   const { updateNodes, deleteNodeAndLinks } = useNodeManagement();
   // updateNodesRefOnly is not used in this component
 
+  const { exportWorkspace, handleImportClick } = useWorkspaceImportExport();
+
   // Trigger for updating NodeEditor screen after editing node information
   const triggerNodeEditorUpdate = () => {
     if (triggerUpdateRef && triggerUpdateRef.current) {
@@ -176,10 +181,6 @@ export const WorkspacePage = () => {
   const _performSaveWithState = async () => {
     // Saving disabled - data stored only in memory
     showNotification('Data is stored only in memory', 'info', 2000);
-  };
-
-  const scheduleSmartAutosave = () => {
-    // Autosave disabled
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -747,7 +748,9 @@ export const WorkspacePage = () => {
 
       if (node) {
         const nodeColor =
-          (node as Node & { nodeColor?: string }).nodeColor || typeColors[node.type];
+          (node as Node & { nodeColor?: string }).nodeColor || 
+          typeColors[node.type as keyof typeof typeColors] ||
+          '#2383ed';
 
         const newNodeData = {
           ...node,
@@ -971,11 +974,6 @@ export const WorkspacePage = () => {
         saveDraft(true);
       }
 
-      // Use smart autosave
-      if (mode !== 'selectMove') {
-        scheduleSmartAutosave();
-      }
-
       // Update NodeEditor if needed
       if (triggerUpdateRef && triggerUpdateRef.current) {
         try {
@@ -1005,6 +1003,30 @@ export const WorkspacePage = () => {
       ) : (
         <>
           <div className={`workspace-content ${isFading ? 'fade-out' : 'fade-in'}`}>
+            {/* Import/Export buttons in top right */}
+            {(userRole === 'admin' || userRole === 'editor') && (
+              <div className="workspace-import-export-buttons">
+                <button
+                  className="workspace-io-button"
+                  onClick={handleImportClick}
+                  title="Import Workspace"
+                  aria-label="Import Workspace"
+                >
+                  <FiUpload />
+                  <span>Import</span>
+                </button>
+                <button
+                  className="workspace-io-button"
+                  onClick={exportWorkspace}
+                  title="Export Workspace"
+                  aria-label="Export Workspace"
+                >
+                  <FiDownload />
+                  <span>Export</span>
+                </button>
+              </div>
+            )}
+
             {(userRole === 'admin' || userRole === 'editor') && (
               <WorkspaceToolbar
                 onModeChange={setMode}
@@ -1035,7 +1057,7 @@ export const WorkspacePage = () => {
               typeWidths={typeWidths}
               setNodeModal={setNodeModal}
               typeNodeName={typeNodeName}
-              registerTrigger={(trigger) => {
+              registerTrigger={(trigger: () => void) => {
                 if (triggerUpdateRef) {
                   triggerUpdateRef.current = trigger;
                 }
