@@ -458,3 +458,386 @@
 .ContentTypeB_datePicker input[type='datetime-local']::-moz-calendar-picker-indicator {
   filter: invert(1);
 }
+
+/* New modern design styles */
+.ContentTypeB_modernCard {
+  width: 100%;
+  padding: 24px;
+  background: var(--color-background-secondary);
+  border: 2px dashed var(--color-border-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ContentTypeB_modernCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ContentTypeB_modernCardIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(var(--main-color-primary-rgb), 0.1);
+  color: var(--main-color-primary);
+  flex-shrink: 0;
+}
+
+.ContentTypeB_modernCardIcon svg {
+  margin-inline: auto;
+}
+
+.ContentTypeB_modernCardTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.ContentTypeB_modernCardDescription {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.ContentTypeB_modernFormGroup {
+  margin-bottom: 20px;
+}
+
+.ContentTypeB_modernLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.ContentTypeB_modernLabelIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--main-color-primary);
+}
+
+.ContentTypeB_modernInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ContentTypeB_modernInput {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px 12px 48px;
+  font-size: 15px;
+  border: 2px solid var(--color-border-primary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.ContentTypeB_modernInput:hover {
+  border-color: var(--main-color-primary);
+  background: var(--color-background-secondary);
+}
+
+.ContentTypeB_modernInput:focus {
+  outline: none;
+  border-color: var(--main-color-primary);
+  box-shadow: 0 0 0 4px rgba(var(--main-color-primary-rgb), 0.15);
+  background: var(--color-background-secondary);
+}
+
+.ContentTypeB_modernInput::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.ContentTypeB_modernInputIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--main-color-primary);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ContentTypeB_modernInputIcon svg {
+  margin-inline: auto;
+}
+
+.ContentTypeB_modernInput[type='datetime-local']::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  filter: invert(0);
+  transition: opacity 0.2s ease;
+}
+
+.ContentTypeB_modernInput[type='datetime-local']::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+[data-theme='dark'] .ContentTypeB_modernInput[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.ContentTypeB_modernSeparator {
+  height: 1px;
+  background: var(--color-border-primary);
+  margin: 24px 0;
+}
+
+.ContentTypeB_modernActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.ContentTypeB_modernButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.ContentTypeB_modernButtonPrimary {
+  background: var(--main-color-primary);
+  color: #ffffff;
+}
+
+.ContentTypeB_modernButtonPrimary:hover {
+  background: var(--main-color-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ContentTypeB_modernButtonOutline {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-primary);
+}
+
+.ContentTypeB_modernButtonOutline:hover {
+  background: var(--color-background-tertiary);
+  border-color: var(--color-border-secondary);
+}
+
+.ContentTypeB_modernButtonDestructive {
+  background: var(--color-error);
+  color: #ffffff;
+}
+
+.ContentTypeB_modernButtonDestructive:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+.ContentTypeB_modernEventCard {
+  width: 100%;
+  padding: 24px;
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ContentTypeB_modernEventHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.ContentTypeB_modernEventHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ContentTypeB_modernEventIconWrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(var(--main-color-primary-rgb), 0.1);
+  flex-shrink: 0;
+}
+
+.ContentTypeB_modernEventIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--main-color-primary);
+}
+
+.ContentTypeB_modernEventIconWrapper svg,
+.ContentTypeB_modernEventIcon svg {
+  margin-inline: auto;
+}
+
+.ContentTypeB_modernEventInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ContentTypeB_modernEventTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.ContentTypeB_modernEventSubtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.ContentTypeB_modernBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.ContentTypeB_modernBadgeDefault {
+  background: var(--main-color-primary);
+  color: #ffffff;
+  border-color: var(--main-color-primary);
+}
+
+.ContentTypeB_modernBadgeSecondary {
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+}
+
+.ContentTypeB_modernTimeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ContentTypeB_modernTimeCard {
+  padding: 16px;
+  background: var(--color-background-tertiary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+}
+
+.ContentTypeB_modernTimeLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.ContentTypeB_modernTimeLabel svg {
+  display: block;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.ContentTypeB_modernTimeValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.ContentTypeB_modernCountdown {
+  padding: 20px;
+  background: var(--color-background-tertiary);
+  border: 1px solid rgba(var(--main-color-primary-rgb), 0.2);
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.ContentTypeB_modernCountdownContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ContentTypeB_modernCountdownIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(var(--main-color-primary-rgb), 0.2);
+  flex-shrink: 0;
+}
+
+.ContentTypeB_modernCountdownIcon svg {
+  margin-inline: auto;
+}
+
+.ContentTypeB_modernCountdownText {
+  flex: 1;
+}
+
+.ContentTypeB_modernCountdownLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.ContentTypeB_modernCountdownValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--main-color-primary);
+}
+
+@media (max-width: 768px) {
+  .ContentTypeB_modernCard,
+  .ContentTypeB_modernEventCard {
+    padding: 16px;
+  }
+
+  .ContentTypeB_modernTimeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ContentTypeB_modernActions {
+    flex-direction: column;
+  }
+
+  .ContentTypeB_modernButton {
+    width: 100%;
+  }
+}
