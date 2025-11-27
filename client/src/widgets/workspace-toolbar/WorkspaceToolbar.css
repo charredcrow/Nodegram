@@ -1,0 +1,398 @@
+/* Workspace switcher above Toolbar */
+.workspace-selector-above-toolbar {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  margin-bottom: 4px;
+}
+
+.workspace-selector-btn {
+  padding: 4px 8px;
+  min-width: 120px;
+  max-width: 180px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 31px;
+}
+
+.workspace-selector-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.workspace-selector-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.workspace-selector-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  flex: 1;
+  text-align: left;
+}
+
+.workspace-selector-btn svg {
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+.workspace-selector-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  backdrop-filter: blur(10px);
+  background-color: var(--color-background-secondary-blur);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  z-index: 1000;
+  padding: 5px;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  animation: dropdownFade 0.2s ease;
+}
+
+.workspace-selector-search {
+  padding: 0 0 6px 0;
+  margin-bottom: 5px;
+}
+
+.workspace-selector-search input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.workspace-selector-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.workspace-selector-list li {
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.workspace-selector-list li:hover {
+  background-color: #1e1e1e;
+}
+
+.workspace-selector-list li span {
+  display: block;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.workspace-selector-list li span.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.workspace-selector-list li input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.workspace-selector-add {
+  display: flex;
+  gap: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--color-border-primary);
+  margin-top: 5px;
+}
+
+.workspace-selector-add input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.workspace-selector-add button {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.workspace-selector-add button:hover {
+  background-color: #1e1e1e;
+}
+
+.toolbar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 1px;
+  background-color: var(--color-background-secondary);
+  z-index: 2;
+  top: 28px;
+  left: 8px;
+  border-radius: 8px;
+}
+
+.tool-button {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: none;
+  background: transparent;
+  cursor: default;
+  border-radius: 6px;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.tool-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.tool-button.active {
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  /* transform: scale(1.1); */
+}
+
+.delete-selected {
+  position: absolute;
+  top: 141px;
+  left: 38px;
+  background: var(--color-background-tertiary);
+}
+
+.delete-selected:hover {
+  background: #b33c48;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: start;
+  z-index: 1000;
+  background-color: transparent;
+}
+
+.modal-content {
+  backdrop-filter: blur(10px);
+  background-color: var(--color-background-secondary-blur);
+  position: relative;
+  width: 330px;
+  max-width: 90vw;
+  max-height: 500px;
+  cursor: default;
+  overflow: hidden;
+  top: 47px;
+  left: 50px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-primary);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.modal-content button {
+  top: 5px;
+  left: 3px;
+}
+
+/* Styles for close button */
+.modal-close-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  font-size: 1.5rem; /* Размер иконки */
+  color: var(--color-text-primary); /* Цвет иконки */
+  transition: color 0.3s;
+  /* Удаляем стандартные стили кнопки */
+  outline: none;
+}
+
+/* Icon color change on hover */
+.modal-close-button:hover {
+  color: var(--color-text-primary);
+}
+
+.modal-body {
+  max-height: 450px;
+  overflow-y: auto;
+  padding: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-primary) var(--color-background-secondary);
+}
+
+/* Scrollbar styles */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--color-text-primary);
+  border-radius: 3px;
+}
+
+.modal-item-container {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  text-align: left;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition:
+    transform 0.1s ease,
+    opacity 0.1s ease,
+    background-color 0.1s ease;
+  user-select: none;
+}
+
+.modal-item-container:active {
+  transform: scale(0.98);
+  background-color: var(--color-background-secondary);
+  opacity: 0.9;
+}
+
+.modal-item-icon {
+  display: inline-block;
+  padding: 2px 0px;
+  margin-right: 6px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  color: var(--color-background-secondary);
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+  border-radius: 6px;
+}
+.modal-item-icon:hover {
+  opacity: 0.9;
+}
+
+.modal-item-icon svg {
+  margin-top: 4px;
+  margin-left: 1px;
+}
+
+.modal-item-name {
+  color: var(--color-text-primary);
+}
+
+.item-type {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.display-mode {
+  position: fixed;
+  font-size: 12px;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  display: flex;
+  gap: 10px;
+  padding: 1px 10px 1px 10px;
+  z-index: 2;
+  margin-left: 0px;
+  top: 6px;
+  left: 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .ReactModal__Content {
+    top: 77px;
+    left: 52px;
+    max-width: calc(100vw - 70px) !important;
+    width: auto !important;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: calc(100vw - 70px);
+  }
+}
+
+/* Add styles for search */
+.modal-search {
+  padding: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.modal-search input {
+  width: 100%;
+  padding: 0px 8px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  border-radius: 0px;
+  transition: border-color 0.2s ease;
+  color: var(--color-text-primary);
+  background-color: transparent;
+}
+
+.modal-search input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.modal-item-container.hidden {
+  transform: translateY(-20px);
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.fs24 {
+  font-size: 24px;
+}

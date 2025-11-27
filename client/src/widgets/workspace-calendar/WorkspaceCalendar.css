@@ -1,0 +1,889 @@
+/* WorkspaceCalendar.css */
+
+/* Оверлей календаря – 100% ширины экрана */
+.workspace-calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 12%);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  transition: opacity 0.5s;
+  /* backdrop-filter: blur(4px); */
+}
+
+.workspace-calendar-overlay.closing {
+  opacity: 0;
+}
+
+/* Контейнер календаря:
+     - Для экранов >600px: 50% ширины;
+     - Для мобильных: 100% ширины.
+  */
+.workspace-calendar-container {
+  backdrop-filter: blur(10px);
+  background-color: var(--color-background-tertiary-blur);
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  animation: slideIn 0.5s forwards;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Анимация появления: с права на лево */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Шапка календаря – фиксированная */
+.calendar-header {
+  /* Используем grid, чтобы стабильно центрировать заголовок между левым и правым блоками */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* Фон обязателен, чтобы элементы ниже не проступали под шапкой на мобильных */
+  background-color: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--color-text-primary);
+
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  color: var(--color-text-secondary);
+}
+
+/* Блок навигации */
+.month-navigation {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  justify-self: end; /* в grid прижимаем вправо */
+}
+.nav-button {
+  background: var(--main-color-primary);
+  border: none;
+  font-size: 11px;
+  color: var(--color-node-title);
+  padding: 4px 8px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.nav-button:hover {
+  opacity: 0.8;
+}
+.today {
+  border: 2px solid #474bff8f;
+  border-radius: 8px;
+}
+
+.today-button {
+  background: var(--main-color-primary);
+  border: none;
+  font-size: 11px;
+  color: var(--color-node-title);
+  padding: 6px 12px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.today-button:hover {
+  opacity: 0.8;
+}
+/* Заголовок месяца по центру, с усечением текста на маленьких экранах */
+.month-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  justify-self: center;
+  min-width: 0; /* позволяет работать обрезке текста в grid */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Модуль выбора месяца и года */
+.month-picker-overlay {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 300px;
+  z-index: 20;
+}
+
+.month-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+.close-month-picker-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+
+  color: var(--color-text-primary);
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+.close-month-picker-btn:hover {
+  color: var(--color-text-secondary);
+}
+.month-picker-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.month-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.month-option {
+  flex: 1 1 30%;
+  padding: 6px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 2px;
+  background: var(--color-background-secondary);
+
+  font-size: 11px;
+  text-align: center;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+
+  transition: all 0.2s ease;
+}
+.month-option:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.month-option.selected {
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--main-color-secondary);
+}
+.year-option input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background: var(--color-background-secondary);
+  transition: all 0.2s ease;
+}
+.year-option input:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.month-picker-footer {
+  text-align: right;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border-primary);
+}
+.apply-btn {
+  background: var(--main-color-primary);
+  border: none;
+  color: var(--color-text-primary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--color-node-title);
+  font-size: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Контролы календаря */
+.calendar-controls {
+  padding: 0px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  margin-top: 12px;
+}
+.search-input {
+  padding: 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  background-color: var(--color-background-secondary-blur);
+}
+.search-input:focus {
+  outline: none;
+}
+.control-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.control-button,
+.import-label {
+  background: var(--color-background-tertiary);
+  border: none;
+  color: var(--color-text-primary);
+  padding: 6px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-left: auto;
+  transition: all 0.2s ease;
+}
+.control-button:hover,
+.import-label:hover {
+  background-color: var(--color-text-primary);
+  color: var(--color-background-secondary);
+}
+
+/* Тело календаря */
+.calendar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 16px;
+  margin-bottom: 12px;
+  max-width: 1000px;
+  width: 100%;
+  margin-inline: auto;
+}
+.day-names {
+  display: flex;
+  margin-bottom: 12px;
+}
+.day-name {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--color-text-primary);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-primary);
+  text-transform: uppercase;
+}
+.weeks {
+  margin-top: 12px;
+}
+.week {
+  display: flex;
+  margin-bottom: 4px;
+  gap: 4px;
+}
+.day {
+  flex: 1;
+  min-width: 0;
+  min-height: 60px;
+  padding: 6px 12px;
+  font-size: 16px;
+  text-align: left;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  transition:
+    background 0.2s,
+    border 0.2s;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+.day.empty {
+  background: var(--color-background-primary);
+}
+.day-number {
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* События в дне */
+.day-events {
+  margin-top: 4px;
+}
+.event {
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 11px;
+  border-radius: 4px;
+  margin: 2px 3px;
+  position: relative;
+
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.event span {
+  padding: 4px 6px;
+  width: 100% !important;
+  font-size: 12px;
+}
+.tooltip_event {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  padding: 8px;
+  border-radius: 2px;
+  white-space: pre-wrap;
+  font-size: 11px;
+  z-index: 10;
+  transform: translateY(-5px);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.event:hover .tooltip_event {
+  display: block;
+}
+.delete-event-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 12px;
+
+  margin-left: 4px;
+  margin-top: 4px;
+  margin-right: 4px;
+  padding: 2px;
+  transition: all 0.2s ease;
+}
+.delete-event-btn:hover {
+  color: var(--color-text-secondary);
+}
+
+/* Форма добавления/редактирования событий */
+.event-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.event-form-container {
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border-primary);
+}
+.event-form-header {
+  padding: 6px 12px 12px 12px;
+  border-bottom: 1px solid var(--color-border-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.event-form-header span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.close-form-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-form-btn:hover {
+  color: var(--color-text-primary);
+}
+.close-form-btn svg {
+  font-size: 18px;
+}
+
+.event-form-container form {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.event-form-container label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+.form-header-add-event {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.form-header-add-event input[type='color'] {
+  width: 100%;
+  height: 12px;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  border: none !important;
+}
+
+.event-form-container input,
+.event-form-container textarea {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+.event-form-container input:focus,
+.event-form-container textarea:focus {
+  outline: none;
+  border-color: none;
+  background-color: none;
+}
+.event-form-container textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.event-form-container button[type='submit'] {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background-color: var(--main-color-primary);
+  color: var(--color-node-title);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.event-form-container button[type='submit']:hover {
+  opacity: 0.8;
+}
+.event_time {
+  padding: 0px !important;
+}
+@media (max-width: 768px) {
+  .event_time {
+    display: none;
+  }
+}
+
+/* Mobile adaptive design */
+@media (max-width: 600px) {
+  /* На очень узких экранах уменьшаем отступы в шапке и разрешаем перенос кнопок навигации */
+  .calendar-header {
+    grid-template-columns: auto 1fr auto;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .month-navigation {
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  .day-events-indicators {
+    padding: 6px 12px;
+    justify-content: center;
+  }
+  .event-dot {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .workspace-calendar-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .calendar-header,
+  .calendar-controls {
+    padding: 8px 12px;
+  }
+  .month-title {
+    font-size: 12px;
+    width: auto;
+  }
+  .nav-button,
+  .today-button,
+  .control-button,
+  .import-label {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+  .day {
+    min-height: 46px;
+    font-size: 11px;
+    text-align: center;
+  }
+  .day-number {
+    font-size: 11px;
+  }
+  .calendar-body {
+    padding: 2px 2px;
+  }
+  .week {
+    gap: 1px;
+  }
+  .event {
+    font-size: 10px;
+    padding: 3px 4px;
+  }
+  .tooltip {
+    font-size: 10px;
+    padding: 6px;
+  }
+  .event-form-container {
+    width: 95%;
+  }
+  .event-form-container form {
+    gap: 12px;
+  }
+  .event-form-container .form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .event-form-container input,
+  .event-form-container textarea {
+    padding: 8px 10px;
+  }
+}
+
+/* Стили для оверлея выбора месяца */
+.picker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.month-picker {
+  backdrop-filter: blur(10px);
+  background-color: var(--color-background-secondary-blur);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  border: 1px solid var(--color-border-primary);
+  position: relative;
+  z-index: 1001;
+  width: 300px;
+}
+
+.month-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
+}
+
+.month-picker-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.month-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.month-option {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.month-option:hover {
+  background-color: var(--color-background-tertiary);
+}
+
+.year-option input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 2px;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+}
+
+.month-picker-footer {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border-primary);
+  text-align: right;
+}
+
+/* Day Events Modal */
+.day-events-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0 0 0 / 15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.day-events-modal {
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+  width: 98%;
+  max-width: 700px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border-primary);
+  min-height: 500px;
+}
+
+.day-events-modal-header {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-events-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal:hover {
+  color: var(--color-text-primary);
+}
+
+.close-modal svg {
+  font-size: 18px;
+}
+
+.day-events-list {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-primary) var(--color-background-secondary);
+  max-height: 450px;
+}
+
+/* Стили для скроллбара */
+.day-events-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.day-events-list::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+.day-events-list::-webkit-scrollbar-thumb {
+  background: var(--color-text-primary);
+  border-radius: 3px;
+}
+
+.no-events {
+  text-align: center;
+  color: var(--color-text-tertiary);
+  padding: 20px;
+  font-size: 18px;
+}
+
+.day-event-item {
+  display: flex;
+  margin: 8px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: 0px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s;
+}
+
+.event-time {
+  min-width: 34px;
+  color: var(--main-color-secondary);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.event-type {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  border: 1px solid var(--color-text-secondary);
+  padding: 1px 4px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+.event-details {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.event-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+}
+
+.event-description {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.event-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.event-actions button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--main-color-primary);
+  color: var(--color-node-title);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.day-events-modal-footer {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.add-event-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--main-color-primary);
+  color: var(--color-node-title);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.add-event-btn:hover {
+  opacity: 0.8;
+}
+
+/* Event indicators */
+.day-events-indicators {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 2px;
+  padding: 6px 12px;
+}
+
+.event-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent-primary);
+  opacity: 0.8;
+}
+
+.event-line {
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-accent-primary);
+  opacity: 0.8;
+  border-radius: 1px;
+}
+
+@media (max-width: 900px) {
+  .day {
+    font-size: 13px;
+  }
+  .day-number {
+    font-size: 13px;
+  }
+  .calendar-body {
+    padding: 4px 4px;
+  }
+  .week {
+    gap: 2px;
+  }
+}
+
+.event-form-container input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(0.2) sepia(0.5) saturate(2) hue-rotate(180deg);
+  opacity: 0.8;
+}

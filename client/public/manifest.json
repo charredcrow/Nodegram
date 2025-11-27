@@ -1,0 +1,12 @@
+{
+  "name": "Nodegram",
+  "short_name": "Nodegram",
+  "description": "Open source node-based workspace playground",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#171717",
+  "theme_color": "#171717",
+  "orientation": "any",
+  "icons": []
+}
+

@@ -1,0 +1,465 @@
+.сontentTypeG_dateInput {
+  width: 100%;
+  padding: 4px 12px !important;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.сontentTypeG_dateInput::-webkit-calendar-picker-indicator {
+  background-color: transparent;
+  cursor: pointer;
+  filter: invert(0.5);
+  padding: 4px;
+  margin-right: -4px;
+}
+
+.сontentTypeG_dateInput::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.сontentTypeG_dateInput::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.сontentTypeG_dateInput::-webkit-datetime-edit-text {
+  padding: 0 2px;
+  color: var(--color-text-secondary);
+}
+
+.сontentTypeG_dateInput::-webkit-datetime-edit-year-field,
+.сontentTypeG_dateInput::-webkit-datetime-edit-month-field,
+.сontentTypeG_dateInput::-webkit-datetime-edit-day-field {
+  padding: 0 2px;
+  color: var(--color-text-primary);
+}
+
+.сontentTypeG_dateInput:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 2px rgba(35, 131, 237, 0.1);
+}
+
+.сontentTypeG_dateInput:hover {
+  border-color: var(--color-accent-primary);
+}
+
+/* Стили для темной темы */
+@media (prefers-color-scheme: dark) {
+  .сontentTypeG_dateInput::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+  }
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .сontentTypeG_dateInput {
+    font-size: 16px; /* Предотвращает масштабирование на iOS */
+    padding: 10px 12px;
+  }
+}
+
+.сontentTypeG_transferFilterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+  flex: 1;
+}
+
+.сontentTypeG_transferFilterGroup label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.сontentTypeG_transferFilterGroup input,
+.сontentTypeG_transferFilterGroup select {
+  width: 100%;
+  height: 32px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.сontentTypeG_transferFilterGroup input:focus,
+.сontentTypeG_transferFilterGroup select:focus {
+  outline: none;
+  border-color: none;
+  box-shadow: none;
+}
+
+/* Адаптивные стили */
+@media (max-width: 1024px) {
+  .сontentTypeG_transferFilterGroup {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .сontentTypeG_transferFilterGroup {
+    min-width: 150px;
+  }
+
+  .сontentTypeG_transferFilterGroup label {
+    font-size: 13px;
+  }
+
+  .сontentTypeG_transferFilterGroup input,
+  .сontentTypeG_transferFilterGroup select {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .сontentTypeG_transferFilterGroup {
+    min-width: 100%;
+  }
+
+  .сontentTypeG_transferFilterGroup label {
+    font-size: 12px;
+  }
+
+  .сontentTypeG_transferFilterGroup input,
+  .сontentTypeG_transferFilterGroup select {
+    font-size: 14px; /* Увеличиваем для лучшей читаемости на мобильных */
+    padding: 8px 12px;
+  }
+}
+
+.finance-metric-change {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.finance-metric-change.positive {
+  color: #8aca46;
+}
+
+.finance-metric-change.negative {
+  color: #ca4646;
+}
+
+.сontentTypeG_lastMonth {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-left: 4px;
+}
+
+.сontentTypeG_financeCnt {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.сontentTypeG_financeTotalBalance {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 12px;
+  background-color: var(--color-background-tertiary);
+  padding: 12px;
+  border-radius: 8px;
+  margin-inline: auto;
+}
+@media (max-width: 768px) {
+  .сontentTypeG_financeTotalBalance {
+    background-color: var(--color-background-secondary);
+  }
+}
+
+.сontentTypeG_financeTotalBalanceTitle {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.сontentTypeG_financeBalance {
+  display: block;
+  font-size: 22px;
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .сontentTypeG_financeBalance {
+    font-size: 28px;
+  }
+}
+
+.сontentTypeG_Anlcs {
+  padding: 12px;
+  background-color: var(--color-background-tertiary);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .сontentTypeG_Anlcs {
+    display: none;
+  }
+  .сontentTypeG_financeCnt {
+    display: block;
+  }
+}
+
+/* Modal styles */
+.сontentTypeG_modalOverlayTransfer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.сontentTypeG_modalContentTransfer {
+  background: var(--color-background-secondary);
+  padding: 14px 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.сontentTypeG_modalHeaderTransfer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.сontentTypeG_modalHeaderTransfer h3 {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.сontentTypeG_modalCloseTransfer {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  line-height: 1;
+}
+
+.сontentTypeG_modalCloseTransfer:hover {
+  color: #333;
+}
+
+/* Update existing transfer add row styles for modal */
+.сontentTypeG_transferAddRowTransfer {
+  display: grid;
+  gap: 0px;
+  padding: 0;
+}
+
+.сontentTypeG_transferAddRowTransfer .сontentTypeG_transferInput {
+  width: 100%;
+  height: 34px;
+  padding: 6px;
+  border-bottom: 1px solid var(--color-border-primary);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  font-size: 17px;
+  background-color: transparent;
+}
+
+.сontentTypeG_transferAddRowTransfer .сontentTypeG_transferInput:focus {
+  outline: none;
+}
+
+.сontentTypeG_transferAddRowTransfer .сontentTypeG_SelectContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.сontentTypeG_transferAddRowTransfer .сontentTypeG_transferAdd {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--main-color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.brbt0 {
+  border-bottom: none;
+}
+
+.b1p {
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  height: 64px !important;
+}
+@media (max-width: 768px) {
+  .b1p {
+    margin-top: 44px;
+  }
+}
+
+/* Стили для модального окна предстоящих платежей */
+.сontentTypeG_modalOverlayUpcoming {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.сontentTypeG_modalContentUpcoming {
+  background: var(--color-background-secondary);
+  padding: 14px 20px;
+  border-radius: 8px;
+  width: 100%;
+  overflow-y: auto;
+  max-width: 600px;
+  min-height: 60vh;
+  max-height: 90vh;
+  position: relative;
+}
+
+.сontentTypeG_modalHeaderUpcoming {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.сontentTypeG_modalHeaderUpcoming h3 {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.сontentTypeG_modalCloseUpcoming {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.сontentTypeG_upcomingPaymentsUpcoming {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.сontentTypeG_upcomingPaymentItemUpcoming {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-primary);
+  transition: all 0.3s ease;
+}
+
+.сontentTypeG_upcomingPaymentItemUpcoming span {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.сontentTypeG_upcomingPaymentItemUpcoming span:nth-child(1) {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.сontentTypeG_upcomingPaymentItemUpcoming span:nth-child(3) {
+  font-weight: 500;
+}
+
+.сontentTypeG_completeButtonUpcoming,
+.сontentTypeG_declineButtonUpcoming {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.сontentTypeG_completeButtonUpcoming {
+  background-color: var(--main-color-primary);
+  color: var(--color-node-title);
+}
+
+.сontentTypeG_declineButtonUpcoming {
+  color: var(--color-text-primary);
+  background-color: transparent !important;
+  border: 1px solid var(--color-border-primary) !important;
+}
+
+.сontentTypeG_declineButtonUpcoming:hover {
+  background-color: var(--color-error-hover);
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .сontentTypeG_upcomingPaymentItemUpcoming span {
+    font-size: 13px;
+  }
+
+  .сontentTypeG_completeButtonUpcoming,
+  .сontentTypeG_declineButtonUpcoming {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .сontentTypeG_upcomingPaymentItemUpcoming span {
+    font-size: 12px;
+  }
+
+  .сontentTypeG_completeButtonUpcoming,
+  .сontentTypeG_declineButtonUpcoming {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
+
+.сontentTypeG_noUpcomingPaymentsUpcoming {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}

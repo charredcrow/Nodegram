@@ -1,0 +1,235 @@
+.dtp_datetimepicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.dtp_input_wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.dtp_custom_input {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-tertiary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.dtp_custom_input:hover {
+  border-color: var(--color-accent-primary);
+}
+
+.dtp_input {
+  width: 100%;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+}
+
+.dtp_hidden_input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.dtp_mobile_input {
+  opacity: 1;
+  pointer-events: auto;
+  padding: 6px;
+  min-height: 36px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dtp_mobile_input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+
+/* Стили для Safari */
+@supports (-webkit-touch-callout: none) {
+  .dtp_mobile_input {
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 6px;
+    min-height: 36px;
+    border-radius: 4px;
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit {
+    padding: 0;
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit-text {
+    padding: 0;
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit-year-field,
+  .dtp_mobile_input::-webkit-datetime-edit-month-field,
+  .dtp_mobile_input::-webkit-datetime-edit-day-field,
+  .dtp_mobile_input::-webkit-datetime-edit-hour-field,
+  .dtp_mobile_input::-webkit-datetime-edit-minute-field {
+    padding: 0;
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit-text {
+    color: var(--color-text-secondary);
+  }
+
+  .dtp_mobile_input::-webkit-datetime-edit-year-field,
+  .dtp_mobile_input::-webkit-datetime-edit-month-field,
+  .dtp_mobile_input::-webkit-datetime-edit-day-field,
+  .dtp_mobile_input::-webkit-datetime-edit-hour-field,
+  .dtp_mobile_input::-webkit-datetime-edit-minute-field {
+    color: var(--color-text-secondary);
+  }
+}
+
+/* Стили для Chrome и других браузеров */
+.dtp_mobile_input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.dtp_mobile_input::-webkit-inner-spin-button,
+.dtp_mobile_input::-webkit-clear-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.dtp_mobile_input::-moz-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.dtp_mobile_input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 2px var(--color-accent-primary);
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .dtp_datetimepicker {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dtp_input_wrapper {
+    width: 100%;
+  }
+
+  .dtp_mobile_input {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Дополнительные стили для мобильных устройств */
+  .dtp_mobile_input[type='date'] {
+    min-height: 36px;
+  }
+
+  .dtp_mobile_input[type='time'] {
+    min-height: 36px;
+  }
+}
+
+/* Стили для темной темы */
+[data-theme='dark'] .dtp_custom_input,
+[data-theme='dark'] .dtp_input,
+[data-theme='dark'] .dtp_mobile_input {
+  background-color: var(--color-background-tertiary);
+  border-color: var(--color-border-primary);
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .dtp_custom_input:hover {
+  border-color: var(--color-accent-primary);
+}
+
+[data-theme='dark'] .dtp_mobile_input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Стили для WebKit браузеров */
+.dtp_date::-webkit-calendar-picker-indicator,
+.dtp_time::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  filter: var(--color-text-primary) brightness(0.8);
+}
+
+.dtp_date::-webkit-calendar-picker-indicator:hover,
+.dtp_time::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Стили для Firefox */
+.dtp_date::-moz-calendar-picker-indicator,
+.dtp_time::-moz-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  filter: var(--color-text-primary) brightness(0.8);
+}
+
+.dtp_date::-moz-calendar-picker-indicator:hover,
+.dtp_time::-moz-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Стили для темной темы */
+[data-theme='dark'] .dtp_date::-webkit-calendar-picker-indicator,
+[data-theme='dark'] .dtp_time::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(0.8);
+}
+
+[data-theme='dark'] .dtp_date::-moz-calendar-picker-indicator,
+[data-theme='dark'] .dtp_time::-moz-calendar-picker-indicator {
+  filter: invert(1) brightness(0.8);
+}
+
+.dtp_left {
+  left: 0;
+}
+
+.dtp_right {
+  right: 0;
+}

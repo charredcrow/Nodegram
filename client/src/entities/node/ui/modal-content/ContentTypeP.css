@@ -1,0 +1,196 @@
+/* Image URL section */
+.contentTypeP_imageUrlSection {
+  margin-bottom: 20px;
+}
+
+.contentTypeP_label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.contentTypeP_imageUrlInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.contentTypeP_imageUrlInput:focus {
+  outline: none;
+  border-color: var(--main-color-primary);
+}
+
+.contentTypeP_imagePreview {
+  margin-top: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-primary);
+  background-color: var(--color-background-tertiary);
+}
+
+.contentTypeP_imagePreview img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Size controls section */
+.contentTypeP_sizeControls {
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.contentTypeP_sizeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contentTypeP_sizeHeader h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.contentTypeP_resetButton {
+  background-color: var(--color-text-tertiary);
+  color: var(--color-background-secondary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contentTypeP_resetButton:hover {
+  background-color: var(--color-text-secondary);
+}
+
+.contentTypeP_sliderGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contentTypeP_sliderItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contentTypeP_sliderItem label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 5px;
+}
+
+.contentTypeP_heightInfo {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-tertiary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.contentTypeP_slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border-primary);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.contentTypeP_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(35, 131, 237, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contentTypeP_slider::-webkit-slider-thumb:hover {
+  background: var(--color-accent-secondary);
+  transform: scale(1.1);
+}
+
+.contentTypeP_slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(35, 131, 237, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contentTypeP_slider::-moz-range-thumb:hover {
+  background: var(--color-accent-secondary);
+  transform: scale(1.1);
+}
+
+.contentTypeP_slider::-webkit-slider-track {
+  background: linear-gradient(
+    to right,
+    var(--color-accent-primary) 0%,
+    var(--color-accent-primary) 50%,
+    var(--color-border-primary) 50%,
+    var(--color-border-primary) 100%
+  );
+  border-radius: 3px;
+  height: 6px;
+}
+
+.contentTypeP_slider::-moz-range-track {
+  background: linear-gradient(
+    to right,
+    var(--color-accent-primary) 0%,
+    var(--color-accent-primary) 50%,
+    var(--color-border-primary) 50%,
+    var(--color-border-primary) 100%
+  );
+  border-radius: 3px;
+  height: 6px;
+  border: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .contentTypeP_sizeHeader {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .contentTypeP_uploadReminder {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}

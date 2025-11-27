@@ -1,0 +1,16 @@
+.workspace-content {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  min-height: var(--viewport-height, 100vh);
+  /* Не запрещаем общий скролл контейнера, пусть прокручивается при необходимости */
+  overflow: visible;
+}
+
+.workspace-content.fade-out {
+  opacity: 0;
+}
+
+.workspace-content.fade-in {
+  opacity: 1;
+}

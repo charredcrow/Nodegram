@@ -1,0 +1,24 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 1000;
+}
+
+.spinner_ng {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #474bff 94%, #0000) top/0.2em 0.2em no-repeat,
+    conic-gradient(#0000 30%, #474bff);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 0.2em), #000 0);
+  animation: spinner-c7wet2 1s infinite linear;
+}
+
+@keyframes spinner-c7wet2 {
+  100% {
+    transform: rotate(1turn);
+  }
+}

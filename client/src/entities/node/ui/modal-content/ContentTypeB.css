@@ -1,0 +1,460 @@
+/* ContentTypeB */
+.ContentTypeB_eventContainer {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: 12px;
+  align-items: center;
+  padding: 16px;
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ContentTypeB_dateTimeRow {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.ContentTypeB_datePicker {
+  flex: 1 1 45%;
+  min-width: 200px;
+  position: relative;
+  width: 100%;
+}
+
+.ContentTypeB_datePicker label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.ContentTypeB_datePicker input {
+  width: 100%;
+  height: 40px !important;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.ContentTypeB_datePicker input:focus {
+  outline: none;
+  border-color: var(--main-color-primary);
+  box-shadow: 0 0 0 2px rgba(94, 0, 147, 0.1);
+}
+
+.ContentTypeB_datePicker input[type='datetime-local'] {
+  position: relative;
+}
+
+.ContentTypeB_datePicker input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Для Firefox (ограниченно) */
+.ContentTypeB_datePicker input[type='datetime-local']::-moz-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.ContentTypeB_saveButton {
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--main-color-primary) !important;
+  padding: 10px 16px !important;
+  align-self: flex-end;
+  vertical-align: middle;
+  margin-left: auto;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  background-color: var(--main-color-primary) !important;
+  text-transform: uppercase;
+  width: 122px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.ContentTypeB_saveButton:hover {
+  background-color: var(--main-color-secondary) !important;
+  border-color: var(--main-color-secondary) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ContentTypeB_resetButton {
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  padding: 10px 16px !important;
+  align-self: flex-end;
+  margin-left: auto;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  background-color: var(--color-background-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  display: block;
+  width: fit-content;
+}
+
+.ContentTypeB_resetButton:hover {
+  background-color: var(--color-background-quaternary) !important;
+  border-color: var(--color-border-secondary) !important;
+  transform: translateY(-1px);
+}
+
+.ContentTypeB_saveButton svg {
+  font-size: 16px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .ContentTypeB_saveButton {
+    width: 100%;
+  }
+}
+
+.ContentTypeB_saveButton svg {
+  font-size: 18px;
+}
+
+.ContentTypeB_countdown {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  border: none;
+}
+
+.сontentTypeF_dashboardNewEvent svg {
+  font-size: 18px;
+}
+
+.ContentTypeB_activeEventInfo {
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.ContentTypeB_eventTime {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--color-background-primary);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.ContentTypeB_eventTimeHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 19px;
+  text-align: center;
+}
+
+.ContentTypeB_eventTimeHeader h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.ContentTypeB_eventStatus {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-primary);
+}
+
+.ContentTypeB_eventTimeContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+.ContentTypeB_eventTimeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--color-background-tertiary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.ContentTypeB_eventTimeLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ContentTypeB_eventTimeValue {
+  font-size: 15px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.ContentTypeB_countdownContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-background-tertiary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.ContentTypeB_countdownLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ContentTypeB_countdownValue {
+  font-size: 16px;
+  color: var(--main-color-primary);
+  font-weight: 600;
+}
+
+.ContentTypeB_resetButtonContainer {
+  margin-top: 16px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .ContentTypeB_eventContainer {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ContentTypeB_datePicker input {
+    height: 36px !important;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .ContentTypeB_saveButton {
+    width: 100%;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+  }
+
+  .ContentTypeB_resetButton {
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+  }
+
+  .ContentTypeB_eventTime {
+    padding: 12px 16px;
+  }
+
+  .ContentTypeB_eventTimeHeader h3 {
+    font-size: 16px;
+  }
+
+  .ContentTypeB_eventStatus {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  .ContentTypeB_eventTimeValue,
+  .ContentTypeB_countdownValue {
+    font-size: 14px;
+  }
+
+  .ContentTypeB_countdownContainer {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ContentTypeB_eventContainer {
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+
+  .ContentTypeB_datePicker input {
+    height: 32px !important;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .ContentTypeB_saveButton {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .ContentTypeB_resetButton {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .ContentTypeB_eventTime {
+    padding: 10px 12px;
+  }
+
+  .ContentTypeB_eventTimeHeader h3 {
+    font-size: 15px;
+  }
+
+  .ContentTypeB_eventStatus {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .ContentTypeB_eventTimeValue,
+  .ContentTypeB_countdownValue {
+    font-size: 13px;
+  }
+
+  .ContentTypeB_countdownContainer {
+    padding: 10px;
+  }
+}
+
+.ContentTypeB_modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ContentTypeB_modal {
+  background: var(--color-background-secondary);
+  border-radius: 14px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+  padding: 14px 20px;
+  min-width: 320px;
+  max-width: 95vw;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.ContentTypeB_modal h2 {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.ContentTypeB_noteField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ContentTypeB_noteField label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+.ContentTypeB_noteField textarea {
+  border-radius: 6px;
+  border: 1px solid var(--color-border-primary);
+  padding: 8px 10px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 60px;
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+}
+.ContentTypeB_noteField textarea:focus {
+  outline: none;
+}
+
+.ContentTypeB_modalActions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+  justify-content: end;
+}
+
+.ContentTypeB_modalActions button {
+  width: 100% !important;
+}
+@media (max-width: 768px) {
+  .ContentTypeB_modalActions {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.ContentTypeB_deleteButton {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ContentTypeB_deleteButton:hover {
+  background: #c0392b;
+}
+
+@media (max-width: 600px) {
+  .ContentTypeB_modal {
+    width: 98vw;
+    min-width: unset;
+    padding: 16px 4vw 12px 4vw;
+  }
+  .ContentTypeB_modal h2 {
+    font-size: 18px;
+  }
+  .ContentTypeB_modalActions button {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .ContentTypeB_noteField textarea {
+    font-size: 13px;
+    padding: 6px 7px;
+  }
+}
+
+/* Удаляем .calendar-icon */
+.ContentTypeB_datePicker .calendar-icon {
+  display: none !important;
+}
+
+.ContentTypeB_datePicker input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Для Firefox (ограниченно) */
+.ContentTypeB_datePicker input[type='datetime-local']::-moz-calendar-picker-indicator {
+  filter: invert(1);
+}
