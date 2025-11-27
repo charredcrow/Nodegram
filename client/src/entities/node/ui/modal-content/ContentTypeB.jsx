@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNotification } from '../../../../app/providers/NotificationProvider';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import { VscNewFile } from 'react-icons/vsc';
+import { Calendar, Clock, X, CheckCircle2, Timer } from 'lucide-react';
 import './ContentTypeB.css';
 
 const ContentTypeB = ({ data, onUpdate }) => {
@@ -10,7 +10,7 @@ const ContentTypeB = ({ data, onUpdate }) => {
   const quillRef = useRef(null);
   const quillInstance = useRef(null);
 
-  // Функция для инициализации даты и времени из timestamp
+  // Initialize date and time from timestamp
   const initializeDateTime = (timestamp) => {
     if (!timestamp) return { date: '', time: '' };
     const date = new Date(timestamp);
@@ -20,19 +20,14 @@ const ContentTypeB = ({ data, onUpdate }) => {
     };
   };
 
-  // Инициализация начальных значений из сохраненных данных
   const initialStartData = initializeDateTime(data?.node?.content?.event_startTime);
   const initialEndData = initializeDateTime(data?.node?.content?.event_endTime);
 
-  // Состояния для хранения даты и времени начала
   const [startDate, setStartDate] = useState(initialStartData.date);
   const [startTime, setStartTime] = useState(initialStartData.time);
-
-  // Состояния для хранения даты и времени окончания
   const [endDate, setEndDate] = useState(initialEndData.date);
   const [endTime, setEndTime] = useState(initialEndData.time);
 
-  // Состояния для хранения timestamp'ов
   const [savedStartTimestamp, setSavedStartTimestamp] = useState(
     data?.node?.content?.event_startTime || ''
   );
@@ -42,7 +37,6 @@ const ContentTypeB = ({ data, onUpdate }) => {
 
   const [countdown, setCountdown] = useState(null);
 
-  // Состояние для формы создания события
   const [formEvent, setFormEvent] = useState({
     startDate: '',
     startTime: '',
@@ -50,7 +44,7 @@ const ContentTypeB = ({ data, onUpdate }) => {
     endTime: '',
   });
 
-  // Функция для вычисления countdown
+  // Calculate countdown
   const calculateCountdown = () => {
     if (!savedStartTimestamp) return null;
     const now = Date.now();
@@ -62,7 +56,7 @@ const ContentTypeB = ({ data, onUpdate }) => {
     return null;
   };
 
-  // Инициализация Quill редактора
+  // Initialize Quill editor
   useEffect(() => {
     if (!quillRef.current || quillInstance.current) return;
 
@@ -98,7 +92,7 @@ const ContentTypeB = ({ data, onUpdate }) => {
     });
   }, [data, onUpdate, savedStartTimestamp, savedEndTimestamp]);
 
-  // Синхронизация полей ввода с timestamp'ами
+  // Sync input fields with timestamps
   useEffect(() => {
     if (savedStartTimestamp) {
       const startDate = new Date(savedStartTimestamp);
@@ -112,14 +106,14 @@ const ContentTypeB = ({ data, onUpdate }) => {
     }
   }, [savedStartTimestamp, savedEndTimestamp]);
 
-  // Инициализация countdown при монтировании
+  // Initialize countdown on mount
   useEffect(() => {
     if (savedStartTimestamp) {
       setCountdown(calculateCountdown());
     }
   }, [savedStartTimestamp, savedEndTimestamp]);
 
-  // Обновление countdown каждую секунду
+  // Update countdown every second
   useEffect(() => {
     if (!savedStartTimestamp) return;
 
@@ -236,6 +230,7 @@ const ContentTypeB = ({ data, onUpdate }) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
     return date.toLocaleString('en-US', {
+      weekday: 'short',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -244,8 +239,32 @@ const ContentTypeB = ({ data, onUpdate }) => {
     });
   };
 
+  const formatCountdown = (seconds) => {
+    const days = Math.floor(seconds / (24 * 3600));
+    const hours = Math.floor((seconds % (24 * 3600)) / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    if (days > 0) {
+      return `${days}d ${hours}h ${minutes}m ${secs}s`;
+    } else if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    } else if (minutes > 0) {
+      return `${minutes}m ${secs}s`;
+    } else {
+      return `${secs}s`;
+    }
+  };
+
   const eventActive = () => {
     return savedStartTimestamp !== '';
+  };
+
+  const getStatusBadge = () => {
+    if (!countdown) return { label: 'Completed', variant: 'secondary' };
+    if (countdown.type === 'start') return { label: 'Upcoming', variant: 'default' };
+    if (countdown.type === 'end') return { label: 'In Progress', variant: 'secondary' };
+    return { label: 'Completed', variant: 'secondary' };
   };
 
   if (!data || !data.node) {
@@ -253,129 +272,164 @@ const ContentTypeB = ({ data, onUpdate }) => {
   }
 
   return (
-    <div className="сontentType_container">
-      <div className="сontentType_inputContainer">
-        <div className="ContentTypeB_week-navigation">
-          {!eventActive() && (
-            <div className="ContentTypeB_eventContainer">
-              <div className="ContentTypeB_dateTimeRow">
-                <div className="ContentTypeB_datePicker">
-                  <label>
-                    <strong>Start date & time:</strong>
-                  </label>
-                  <input
-                    type="datetime-local"
-                    value={
-                      formEvent.startDate && formEvent.startTime
-                        ? `${formEvent.startDate}T${formEvent.startTime}`
-                        : ''
-                    }
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      const [date, time] = val.split('T');
-                      setFormEvent((ev) => ({ ...ev, startDate: date, startTime: time }));
-                    }}
-                  />
-                </div>
-              </div>
-              {formEvent.startDate && formEvent.startTime && (
-                <div className="ContentTypeB_dateTimeRow">
-                  <div className="ContentTypeB_datePicker">
-                    <label>
-                      <strong>End date & time:</strong>
-                    </label>
-                    <input
-                      type="datetime-local"
-                      value={
-                        formEvent.endDate && formEvent.endTime
-                          ? `${formEvent.endDate}T${formEvent.endTime}`
-                          : ''
-                      }
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        const [date, time] = val.split('T');
-                        setFormEvent((ev) => ({ ...ev, endDate: date, endTime: time }));
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
-              <div className="ContentTypeB_modalActions">
-                <button className="ContentTypeB_saveButton" onClick={handleFormSave}>
-                  <strong>Save</strong>
-                </button>
-                <button className="ContentTypeB_resetButton" onClick={resetEvent}>
-                  Cancel
-                </button>
+    <div className="сontentType_inputContainer" style={{ width: '100%' }}>
+      {!eventActive() ? (
+        <div className="ContentTypeB_modernCard">
+          <div className="ContentTypeB_modernCardHeader">
+            <div className="ContentTypeB_modernCardIcon">
+              <Calendar size={20} />
+            </div>
+            <h2 className="ContentTypeB_modernCardTitle">Create New Event</h2>
+          </div>
+          <p className="ContentTypeB_modernCardDescription">
+            Set the start and end date for your event
+          </p>
+
+          <div className="ContentTypeB_modernFormGroup">
+            <label htmlFor="start-datetime" className="ContentTypeB_modernLabel">
+              <Clock size={16} className="ContentTypeB_modernLabelIcon" />
+              Start Date & Time
+            </label>
+            <div className="ContentTypeB_modernInputWrapper">
+              <Calendar size={20} className="ContentTypeB_modernInputIcon" />
+              <input
+                id="start-datetime"
+                type="datetime-local"
+                className="ContentTypeB_modernInput"
+                value={
+                  formEvent.startDate && formEvent.startTime
+                    ? `${formEvent.startDate}T${formEvent.startTime}`
+                    : ''
+                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  const [date, time] = val.split('T');
+                  setFormEvent((ev) => ({ ...ev, startDate: date || '', startTime: time || '' }));
+                }}
+              />
+            </div>
+          </div>
+
+          {formEvent.startDate && formEvent.startTime && (
+            <div className="ContentTypeB_modernFormGroup">
+              <label htmlFor="end-datetime" className="ContentTypeB_modernLabel">
+                <Clock size={16} className="ContentTypeB_modernLabelIcon" />
+                End Date & Time <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>(Optional)</span>
+              </label>
+              <div className="ContentTypeB_modernInputWrapper">
+                <Calendar size={20} className="ContentTypeB_modernInputIcon" />
+                <input
+                  id="end-datetime"
+                  type="datetime-local"
+                  className="ContentTypeB_modernInput"
+                  value={
+                    formEvent.endDate && formEvent.endTime
+                      ? `${formEvent.endDate}T${formEvent.endTime}`
+                      : ''
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const [date, time] = val.split('T');
+                    setFormEvent((ev) => ({ ...ev, endDate: date || '', endTime: time || '' }));
+                  }}
+                  min={`${formEvent.startDate}T${formEvent.startTime}`}
+                />
               </div>
             </div>
           )}
 
-          {eventActive() && (
-            <div className="ContentTypeB_activeEventInfo">
-              <div className="ContentTypeB_eventTime">
-                <div className="ContentTypeB_eventTimeHeader">
-                  <h3>Event Details</h3>
-                  <span className="ContentTypeB_eventStatus">
-                    {countdown?.type === 'start'
-                      ? 'Upcoming'
-                      : countdown?.type === 'end'
-                        ? 'In Progress'
-                        : 'Completed'}
-                  </span>
-                </div>
-                <div className="ContentTypeB_eventTimeContent">
-                  <div className="ContentTypeB_eventTimeItem">
-                    <span className="ContentTypeB_eventTimeLabel">Start</span>
-                    <span className="ContentTypeB_eventTimeValue">
-                      {formatEventDateTime(savedStartTimestamp)}
-                    </span>
-                  </div>
-                  {savedEndTimestamp && (
-                    <div className="ContentTypeB_eventTimeItem">
-                      <span className="ContentTypeB_eventTimeLabel">End</span>
-                      <span className="ContentTypeB_eventTimeValue">
-                        {formatEventDateTime(savedEndTimestamp)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                {countdown && countdown.type && (
-                  <div className="ContentTypeB_countdownContainer">
-                    <span className="ContentTypeB_countdownLabel">
-                      {countdown.type === 'start' ? 'Starts in:' : 'Ends in:'}
-                    </span>
-                    <span className="ContentTypeB_countdownValue">
-                      {(() => {
-                        const totalSeconds = countdown.time;
-                        const days = Math.floor(totalSeconds / (24 * 3600));
-                        const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
-                        const minutes = Math.floor((totalSeconds % 3600) / 60);
-                        const remainingSeconds = totalSeconds % 60;
+          <div className="ContentTypeB_modernSeparator"></div>
 
-                        if (days > 0) {
-                          return `${days}d ${hours}h ${minutes}m ${remainingSeconds}s`;
-                        } else if (hours > 0) {
-                          return `${hours}h ${minutes}m ${remainingSeconds}s`;
-                        } else if (minutes > 0) {
-                          return `${minutes}m ${remainingSeconds}s`;
-                        } else {
-                          return `${remainingSeconds}s`;
-                        }
-                      })()}
-                    </span>
-                  </div>
-                )}
-                <div className="ContentTypeB_resetButtonContainer">
-                  <button className="ContentTypeB_resetButton" onClick={resetEvent}>
-                    Delete Event
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="ContentTypeB_modernActions">
+            <button
+              className="ContentTypeB_modernButton ContentTypeB_modernButtonPrimary"
+              onClick={handleFormSave}
+            >
+              <CheckCircle2 size={16} />
+              Save Event
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="ContentTypeB_modernEventCard">
+          <div className="ContentTypeB_modernEventHeader">
+            <div className="ContentTypeB_modernEventHeaderLeft">
+              <div className="ContentTypeB_modernEventIconWrapper">
+                <Calendar size={24} className="ContentTypeB_modernEventIcon" />
+              </div>
+              <div className="ContentTypeB_modernEventInfo">
+                <h2 className="ContentTypeB_modernEventTitle">Event Scheduled</h2>
+                <p className="ContentTypeB_modernEventSubtitle">
+                  {formatEventDateTime(savedStartTimestamp)}
+                </p>
+              </div>
+            </div>
+            <span
+              className={`ContentTypeB_modernBadge ${
+                getStatusBadge().variant === 'default'
+                  ? 'ContentTypeB_modernBadgeDefault'
+                  : 'ContentTypeB_modernBadgeSecondary'
+              }`}
+            >
+              {getStatusBadge().label}
+            </span>
+          </div>
+
+          <div className="ContentTypeB_modernTimeGrid">
+            <div className="ContentTypeB_modernTimeCard">
+              <div className="ContentTypeB_modernTimeLabel">
+                <Clock size={14} />
+                Start Time
+              </div>
+              <div className="ContentTypeB_modernTimeValue">
+                {formatEventDateTime(savedStartTimestamp)}
+              </div>
+            </div>
+
+            {savedEndTimestamp && (
+              <div className="ContentTypeB_modernTimeCard">
+                <div className="ContentTypeB_modernTimeLabel">
+                  <Clock size={14} />
+                  End Time
+                </div>
+                <div className="ContentTypeB_modernTimeValue">
+                  {formatEventDateTime(savedEndTimestamp)}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {countdown && countdown.type && (
+            <div className="ContentTypeB_modernCountdown">
+              <div className="ContentTypeB_modernCountdownContent">
+                <div className="ContentTypeB_modernCountdownIcon">
+                  <Timer size={20} />
+                </div>
+                <div className="ContentTypeB_modernCountdownText">
+                  <div className="ContentTypeB_modernCountdownLabel">
+                    {countdown.type === 'start' ? 'Event starts in' : 'Event ends in'}
+                  </div>
+                  <div className="ContentTypeB_modernCountdownValue">
+                    {formatCountdown(countdown.time)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="ContentTypeB_modernSeparator"></div>
+
+          <div className="ContentTypeB_modernActions">
+            <button
+              className="ContentTypeB_modernButton ContentTypeB_modernButtonDestructive"
+              onClick={resetEvent}
+            >
+              <X size={16} />
+              Delete Event
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

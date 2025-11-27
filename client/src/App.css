@@ -55,6 +55,7 @@
   --main-color-primary: #535bdd;
   --main-color-secondary: #7473d2;
   --main-color-tertiary: #5a5ca7;
+  --main-color-primary-rgb: 83, 91, 221;
 
   --node-body-color: #2d313b;
 
@@ -62,6 +63,27 @@
   --color-background-tertiary-blur: rgba(228, 228, 228, 0.8);
 
   --stroke-selected-node: #000000;
+
+  /* shadcn/ui CSS variables */
+  --background: var(--color-background-secondary);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-background-secondary);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-background-secondary);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--main-color-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-background-tertiary);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-background-tertiary);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-background-tertiary);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-error);
+  --destructive-foreground: #ffffff;
+  --border: var(--color-border-primary);
+  --input: var(--color-border-primary);
+  --ring: var(--main-color-primary);
 }
 
 /* Темная тема */
@@ -101,6 +123,7 @@
   --main-color-primary: #512feb;
   --main-color-secondary: #4042cf;
   --main-color-tertiary: #5a5ca7;
+  --main-color-primary-rgb: 81, 47, 235;
 
   --node-body-color: #202020;
 
@@ -108,6 +131,27 @@
   --color-background-tertiary-blur: rgba(20, 20, 20, 0.941);
 
   --stroke-selected-node: #ffffffc3;
+
+  /* shadcn/ui CSS variables for dark theme */
+  --background: var(--color-background-secondary);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-background-secondary);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-background-secondary);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--main-color-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-background-tertiary);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-background-tertiary);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-background-tertiary);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-error);
+  --destructive-foreground: #ffffff;
+  --border: var(--color-border-primary);
+  --input: var(--color-border-primary);
+  --ring: var(--main-color-primary);
 }
 
 /* Базовые стили */

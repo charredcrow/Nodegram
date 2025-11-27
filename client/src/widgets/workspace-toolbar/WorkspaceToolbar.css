@@ -296,7 +296,9 @@
 }
 
 .modal-item-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px 0px;
   margin-right: 6px;
   margin-bottom: 2px;
@@ -314,8 +316,8 @@
 }
 
 .modal-item-icon svg {
-  margin-top: 4px;
-  margin-left: 1px;
+
+  margin-inline: auto;
 }
 
 .modal-item-name {
